@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import IntegrityError
 
-from src.app import db
+from src.database import db
 from src.models import User, Pokemon, Type, Favorite
 
 api = Blueprint("api", __name__)

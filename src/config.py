@@ -3,7 +3,7 @@ import os
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ.get("SECRET_KEY") or "supersecretkey"
-    WTF_CSRF_ENABLED = True
+    WTF_CSRF_ENABLED = False
 
     # 1) Prioriza DB remota (Postgres) si existe variable de entorno
     DB_URL = (
