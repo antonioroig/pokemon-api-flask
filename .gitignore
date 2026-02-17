@@ -1,0 +1,27 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+Pipfile.lock
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos SQLite
+instance/
+*.db
+*.sqlite3
+
+# Variables de entorno
+.env
+.env.local
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
