@@ -1,16 +1,34 @@
+from flask import Flask
+from flask_migrate import Migrate
+from flask_cors import CORS
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+from flask_wtf.csrf import CSRFProtect
+
+from src.config import Config
+from src.database import db
+from src.models import (
+    User, Pokemon, Type, Favorite,
+    UserAdmin, PokemonAdmin, FavoriteAdmin,
+    bcrypt
+)
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # ✅ Inicializar bcrypt (NECESARIO para set_password)
-    from src.models import bcrypt
-    bcrypt.init_app(app)
+    # Si tu API es pública REST, lo más normal es desactivar CSRF en Config:
+    # WTF_CSRF_ENABLED = False
+    CSRFProtect(app)
 
     CORS(app)
     db.init_app(app)
     Migrate(app, db)
 
-    admin = Admin(app, name='Pokemon API', template_mode='bootstrap3')
+    # ✅ bcrypt necesario para set_password()
+    bcrypt.init_app(app)
+
+    admin = Admin(app, name="Pokemon API", template_mode="bootstrap3")
 
     class ReadOnlyModelView(ModelView):
         can_create = False
@@ -26,3 +44,11 @@ def create_app():
     app.register_blueprint(api)
 
     return app
+
+
+# ✅ ESTO ES LO QUE LE FALTA A TU ARCHIVO (para que Vercel pueda importarlo)
+app = create_app()
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=3000)
