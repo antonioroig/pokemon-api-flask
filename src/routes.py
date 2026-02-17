@@ -30,7 +30,7 @@ def delete_user(user_id):
 @app.route('/pokemons', methods=['GET'])
 def get_pokemons():
     pokemons = Pokemon.query.all()
-    return jsonify([{'id': p.id, 'name': p.name, 'type': p.type.name} for p in pokemons])
+    return jsonify([{'id': p.id, 'name': p.name, 'type': p.poke_type.name} for p in pokemons])
 
 @app.route('/pokemons', methods=['POST'])
 def create_pokemon():
