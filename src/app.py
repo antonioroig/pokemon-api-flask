@@ -12,6 +12,7 @@ from src.models import (
     UserAdmin, PokemonAdmin, FavoriteAdmin,
     bcrypt
 )
+bcrypt.init_app(app)
 
 def create_app():
     app = Flask(__name__)

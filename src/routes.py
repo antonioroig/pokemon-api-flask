@@ -48,6 +48,21 @@ def health():
     return jsonify({"status": "ok"}), 200
 
 
+# ---------- Root ----------
+@api.get("/")
+def home():
+    return jsonify({
+        "name": "Pokemon API",
+        "status": "ok",
+        "health": "/health",
+        "endpoints": [
+            "/users",
+            "/pokemons",
+            "/types"
+        ]
+    }), 200
+
+
 # ---------- Types ----------
 @api.get("/types")
 def list_types():
