@@ -9,9 +9,9 @@ from src.config import Config
 from src.database import db
 from src.models import (
     User, Pokemon, Type, Favorite,
-    UserAdmin, PokemonAdmin, FavoriteAdmin,
-    bcrypt
+    UserAdmin, PokemonAdmin, FavoriteAdmin
 )
+from src.models import bcrypt  # Importa bcrypt para inicializarlo
 bcrypt.init_app(app)
 
 def create_app():
